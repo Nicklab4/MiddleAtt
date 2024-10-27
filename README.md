@@ -68,6 +68,23 @@ mv Animals animal/Animals
 из этого репозитория.
 ### Решение:
 
+Скачивание deb пакета с официального сайта разработчиков MySQL
+```
+wget https://dev.mysql.com/get/mysql-apt-config_0.8.33-1_all.deb
+```
+Установка пакета mysql-apt-config_0.8.33-1_all.deb
+```
+sudo dpkg -i mysql-apt-config*
+```
+Обновление списка пакетов в репозиториях
+```
+sudo apt update
+```
+Установка клиента и сервера MySQL
+```
+sudo apt install mysql-server mysql-client
+```
+
 4. Установить и удалить deb-пакет с помощью dpkg.
 
 6. Выложить историю команд в терминале ubuntu
