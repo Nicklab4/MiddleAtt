@@ -38,14 +38,14 @@ cat >> PackAnimals
 cat HumanFriends PackAnimals > DomesticAnimal
 ```
 
-Переименование файла DomesticAnimal в файл Animals
+Переименование файла DomesticAnimal в файл HumanFriends
 ```
-mv DomesticAnimal Animals
+mv DomesticAnimal HumanFriends
 ```
 
-Просмотр файла Animals
+Просмотр файла HumanFriends
 ```
-cat Animals
+cat HumanFriends
 ```
 
 ## Задание 2.
