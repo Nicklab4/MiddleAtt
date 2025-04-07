@@ -18,9 +18,11 @@
 Переименовать файл, дав ему новое имя (Друзья человека).
 
 ### Решение:
-Создание файлов, комбинация клавиш Ctrl + d, оканчивает ввод текста
+Создание файлов - Домашние животные (DomesticAnimals) и Вьючные животные (PackAnimals)
+
+(комбинация клавиш Ctrl + d, оканчивает ввод текста)
 ```
-cat >> HumanFriends
+cat >> DomesticAnimals
 собаки
 кошки
 хомяки
@@ -33,14 +35,14 @@ cat >> PackAnimals
 ослы
 ```
 
-Объединение файлов HumanFriends и PackAnimals в файл DomesticAnimal
+Объединение файлов DomesticAnimals и PackAnimals в файл NewText
 ```
-cat HumanFriends PackAnimals > DomesticAnimal
+cat DomesticAnimals PackAnimals > NewText
 ```
 
-Переименование файла DomesticAnimal в файл HumanFriends
+Переименование файла NewText в файл HumanFriends
 ```
-mv DomesticAnimal HumanFriends
+mv NewText HumanFriends
 ```
 
 Просмотр файла HumanFriends
