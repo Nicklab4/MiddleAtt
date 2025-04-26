@@ -105,6 +105,9 @@ sudo apt install mysql-server mysql-client mysql-connector-odbc
 sudo dpkg -r mysql-connector-odbc
 ```
 
+Выложить историю команд в терминале
+![История команд в терминале](Scr/CMDHistory.png)
+
 
 ## Задание 6.
 6. Нарисовать диаграмму, в которой есть класс родительский класс, домашние
@@ -132,6 +135,9 @@ SHOW DATABASES;
 ```
 CREATE DATABASE HumanFriends
 ```
+
+![Создание БД HumanFriends](Scr/CMDmysqlCreateDB.png)
+
 
 9. Создать таблицы с иерархией из диаграммы в БД
 
