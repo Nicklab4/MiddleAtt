@@ -155,8 +155,43 @@ CREATE DATABASE HumanFriends
 ## Задание 8.
 8. Создать таблицы с иерархией из диаграммы в БД
 
-10. Заполнить низкоуровневые таблицы именами(животных), командами
+### Решение:
+```dtd
+CREATE TABLE Genus ( genus_id VARCHAR(60) NOT NULL, PRIMARY KEY (genus_id));
+CREATE TABLE Commands ( cmd_id VARCHAR(60) NOT NULL, PRIMARY KEY (cmd_id));
+
+CREATE TABLE GenusAndCommand ( gac_id INT NOT NULL AUTO_INCREMENT, `genus` VARCHAR(60) NULL, `command`
+  VARCHAR(60) NULL, PRIMARY KEY (gac_id),
+    FOREIGN KEY (genus) REFERENCES Genus (genus_id),
+    FOREIGN KEY (command) REFERENCES Commands (cmd_id));
+```
+## Задание 9.
+9. Заполнить низкоуровневые таблицы именами(животных), командами
 которые они выполняют и датами рождения
+
+### Решение:
+```dtd
+INSERT INTO Genus (genus_id)
+VALUES ("camel"), ("horse"), ("donkey"), ("cat"), ("dog"), ("hamster");
+
+INSERT INTO Commands (cmd_id)
+VALUES ("run"), ("seat"), ("walk"), ("hunt");
+
+INSERT INTO GenusAndCommand (genus, command)
+VALUES
+("camel", "run"),
+("camel", "walk"),
+("camel", "seat"),
+("horse", "run"),
+("horse", "walk"),
+("donkey", "walk"),
+("cat", "hunt"),
+("dog", "seat"),
+("dog", "walk"),
+("dog", "hunt"),
+("dog", "run"),
+("hamster", "run");
+```
 
 11. Удалив из таблицы верблюдов, т.к. верблюдов решили перевезти в другой
 питомник на зимовку. Объединить таблицы лошади, и ослы в одну таблицу.
