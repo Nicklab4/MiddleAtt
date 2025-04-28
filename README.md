@@ -157,14 +157,64 @@ CREATE DATABASE HumanFriends
 
 ### Решение:
 ```dtd
-CREATE TABLE Genus ( genus_id VARCHAR(60) NOT NULL, PRIMARY KEY (genus_id));
-CREATE TABLE Commands ( cmd_id VARCHAR(60) NOT NULL, PRIMARY KEY (cmd_id));
-CREATE TABLE DomesticType ( dtype_id VARCHAR(60) NOT NULL, PRIMARY KEY (dtype_id));
+CREATE TABLE Genus ( genus_id VARCHAR(10) NOT NULL, PRIMARY KEY (genus_id));
+CREATE TABLE Commands ( cmd_id VARCHAR(5) NOT NULL, PRIMARY KEY (cmd_id));
+CREATE TABLE DomesticType ( dtype_id VARCHAR(20) NOT NULL, PRIMARY KEY (dtype_id));
+CREATE TABLE Names ( name_id VARCHAR(60) NOT NULL, PRIMARY KEY (name_id));
 
-CREATE TABLE GenusAndCommand ( gac_id INT NOT NULL AUTO_INCREMENT, genus VARCHAR(60)NOT NULL,
-  command VARCHAR(60) NOT NULL, PRIMARY KEY (gac_id),
-    FOREIGN KEY (genus) REFERENCES Genus (genus_id),
-    FOREIGN KEY (command) REFERENCES Commands (cmd_id));
+CREATE TABLE GenusAndCommand ( gac_id INT NOT NULL AUTO_INCREMENT,
+        genus VARCHAR(60)NOT NULL, command VARCHAR(5) NOT NULL,
+        PRIMARY KEY (gac_id),
+        FOREIGN KEY (genus) REFERENCES Genus (genus_id),
+        FOREIGN KEY (command) REFERENCES Commands (cmd_id));
+
+CREATE TABLE Camels ( camel_id INT NOT NULL AUTO_INCREMENT,
+        name VARCHAR(60) NOT NULL, d_type VARCHAR(20) NOT NULL,
+        birthDate DATETIME NOT NULL, gac VARCHAR(10) NOT NULL,
+        PRIMARY KEY (camel_id),
+        FOREIGN KEY (name) REFERENCES Names (name_id),
+        FOREIGN KEY (d_type) REFERENCES DomesticType (dtype_id),
+        FOREIGN KEY (gac) REFERENCES Genus (genus_id));
+
+CREATE TABLE Horses ( horse_id INT NOT NULL AUTO_INCREMENT,
+        name VARCHAR(60) NOT NULL, d_type VARCHAR(20) NOT NULL,
+        birthDate DATETIME NOT NULL, gac VARCHAR(10) NOT NULL,
+        PRIMARY KEY (horse_id),
+        FOREIGN KEY (name) REFERENCES Names (name_id),
+        FOREIGN KEY (d_type) REFERENCES DomesticType (dtype_id),
+        FOREIGN KEY (gac) REFERENCES Genus (genus_id));
+
+CREATE TABLE Donkeys ( donkey_id INT NOT NULL AUTO_INCREMENT,
+        name VARCHAR(60) NOT NULL, d_type VARCHAR(20) NOT NULL,
+        birthDate DATETIME NOT NULL, gac VARCHAR(10) NOT NULL,
+        PRIMARY KEY (donkey_id),
+        FOREIGN KEY (name) REFERENCES Names (name_id),
+        FOREIGN KEY (d_type) REFERENCES DomesticType (dtype_id),
+        FOREIGN KEY (gac) REFERENCES Genus (genus_id));
+
+CREATE TABLE Kats ( kat_id INT NOT NULL AUTO_INCREMENT,
+        name VARCHAR(60) NOT NULL, d_type VARCHAR(20) NOT NULL,
+        birthDate DATETIME NOT NULL, gac VARCHAR(10) NOT NULL,
+        PRIMARY KEY (kat_id),
+        FOREIGN KEY (name) REFERENCES Names (name_id),
+        FOREIGN KEY (d_type) REFERENCES DomesticType (dtype_id),
+        FOREIGN KEY (gac) REFERENCES Genus (genus_id));
+
+CREATE TABLE Dogs ( dog_id INT NOT NULL AUTO_INCREMENT,
+        name VARCHAR(60) NOT NULL, d_type VARCHAR(20) NOT NULL,
+        birthDate DATETIME NOT NULL, gac VARCHAR(10) NOT NULL,
+        PRIMARY KEY (dog_id),
+        FOREIGN KEY (name) REFERENCES Names (name_id),
+        FOREIGN KEY (d_type) REFERENCES DomesticType (dtype_id),
+        FOREIGN KEY (gac) REFERENCES Genus (genus_id));
+
+CREATE TABLE Hamsters ( hamster_id INT NOT NULL AUTO_INCREMENT,
+        name VARCHAR(60) NOT NULL, d_type VARCHAR(20) NOT NULL,
+        birthDate DATETIME NOT NULL, gac VARCHAR(10) NOT NULL,
+        PRIMARY KEY (hamster_id),
+        FOREIGN KEY (name) REFERENCES Names (name_id),
+        FOREIGN KEY (d_type) REFERENCES DomesticType (dtype_id),
+        FOREIGN KEY (gac) REFERENCES Genus (genus_id));
 ```
 ## Задание 9.
 9. Заполнить низкоуровневые таблицы именами(животных), командами
