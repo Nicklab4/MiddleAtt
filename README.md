@@ -159,9 +159,10 @@ CREATE DATABASE HumanFriends
 ```dtd
 CREATE TABLE Genus ( genus_id VARCHAR(60) NOT NULL, PRIMARY KEY (genus_id));
 CREATE TABLE Commands ( cmd_id VARCHAR(60) NOT NULL, PRIMARY KEY (cmd_id));
+CREATE TABLE DomesticType ( dtype_id VARCHAR(60) NOT NULL, PRIMARY KEY (dtype_id));
 
-CREATE TABLE GenusAndCommand ( gac_id INT NOT NULL AUTO_INCREMENT, `genus` VARCHAR(60) NULL, `command`
-  VARCHAR(60) NULL, PRIMARY KEY (gac_id),
+CREATE TABLE GenusAndCommand ( gac_id INT NOT NULL AUTO_INCREMENT, genus VARCHAR(60)NOT NULL,
+  command VARCHAR(60) NOT NULL, PRIMARY KEY (gac_id),
     FOREIGN KEY (genus) REFERENCES Genus (genus_id),
     FOREIGN KEY (command) REFERENCES Commands (cmd_id));
 ```
@@ -178,19 +179,24 @@ INSERT INTO Commands (cmd_id)
 VALUES ("run"), ("seat"), ("walk"), ("hunt");
 
 INSERT INTO GenusAndCommand (genus, command)
-VALUES
-("camel", "run"),
-("camel", "walk"),
-("camel", "seat"),
-("horse", "run"),
-("horse", "walk"),
-("donkey", "walk"),
-("cat", "hunt"),
-("dog", "seat"),
-("dog", "walk"),
-("dog", "hunt"),
-("dog", "run"),
-("hamster", "run");
+  VALUES
+    ("camel", "run"),
+    ("camel", "walk"),
+    ("camel", "seat"),
+    ("horse", "run"),
+    ("horse", "walk"),
+    ("donkey", "walk"),
+    ("cat", "hunt"),
+    ("dog", "seat"),
+    ("dog", "walk"),
+    ("dog", "hunt"),
+    ("dog", "run"),
+    ("hamster", "run");
+
+INSERT INTO DomesticType (dtype_id)
+  VALUES
+    ("domestic animals"),
+    ("pack animals");
 ```
 
 11. Удалив из таблицы верблюдов, т.к. верблюдов решили перевезти в другой
