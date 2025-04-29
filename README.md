@@ -170,7 +170,7 @@ CREATE TABLE GenusAndCommand ( gac_id INT NOT NULL AUTO_INCREMENT,
 
 CREATE TABLE Camels ( camel_id INT NOT NULL AUTO_INCREMENT,
         name VARCHAR(60) NOT NULL, d_type VARCHAR(20) NOT NULL,
-        birthDate DATETIME NOT NULL, gac VARCHAR(10) NOT NULL,
+        birthDate DATE NOT NULL, gac VARCHAR(10) NOT NULL,
         PRIMARY KEY (camel_id),
         FOREIGN KEY (name) REFERENCES Names (name_id),
         FOREIGN KEY (d_type) REFERENCES DomesticType (dtype_id),
@@ -178,7 +178,7 @@ CREATE TABLE Camels ( camel_id INT NOT NULL AUTO_INCREMENT,
 
 CREATE TABLE Horses ( horse_id INT NOT NULL AUTO_INCREMENT,
         name VARCHAR(60) NOT NULL, d_type VARCHAR(20) NOT NULL,
-        birthDate DATETIME NOT NULL, gac VARCHAR(10) NOT NULL,
+        birthDate DATE NOT NULL, gac VARCHAR(10) NOT NULL,
         PRIMARY KEY (horse_id),
         FOREIGN KEY (name) REFERENCES Names (name_id),
         FOREIGN KEY (d_type) REFERENCES DomesticType (dtype_id),
@@ -186,23 +186,23 @@ CREATE TABLE Horses ( horse_id INT NOT NULL AUTO_INCREMENT,
 
 CREATE TABLE Donkeys ( donkey_id INT NOT NULL AUTO_INCREMENT,
         name VARCHAR(60) NOT NULL, d_type VARCHAR(20) NOT NULL,
-        birthDate DATETIME NOT NULL, gac VARCHAR(10) NOT NULL,
+        birthDate DATE NOT NULL, gac VARCHAR(10) NOT NULL,
         PRIMARY KEY (donkey_id),
         FOREIGN KEY (name) REFERENCES Names (name_id),
         FOREIGN KEY (d_type) REFERENCES DomesticType (dtype_id),
         FOREIGN KEY (gac) REFERENCES Genus (genus_id));
 
-CREATE TABLE Kats ( kat_id INT NOT NULL AUTO_INCREMENT,
+CREATE TABLE Cats ( dat_id INT NOT NULL AUTO_INCREMENT,
         name VARCHAR(60) NOT NULL, d_type VARCHAR(20) NOT NULL,
-        birthDate DATETIME NOT NULL, gac VARCHAR(10) NOT NULL,
-        PRIMARY KEY (kat_id),
+        birthDate DATE NOT NULL, gac VARCHAR(10) NOT NULL,
+        PRIMARY KEY (cat_id),
         FOREIGN KEY (name) REFERENCES Names (name_id),
         FOREIGN KEY (d_type) REFERENCES DomesticType (dtype_id),
         FOREIGN KEY (gac) REFERENCES Genus (genus_id));
 
 CREATE TABLE Dogs ( dog_id INT NOT NULL AUTO_INCREMENT,
         name VARCHAR(60) NOT NULL, d_type VARCHAR(20) NOT NULL,
-        birthDate DATETIME NOT NULL, gac VARCHAR(10) NOT NULL,
+        birthDate DATE NOT NULL, gac VARCHAR(10) NOT NULL,
         PRIMARY KEY (dog_id),
         FOREIGN KEY (name) REFERENCES Names (name_id),
         FOREIGN KEY (d_type) REFERENCES DomesticType (dtype_id),
@@ -210,7 +210,7 @@ CREATE TABLE Dogs ( dog_id INT NOT NULL AUTO_INCREMENT,
 
 CREATE TABLE Hamsters ( hamster_id INT NOT NULL AUTO_INCREMENT,
         name VARCHAR(60) NOT NULL, d_type VARCHAR(20) NOT NULL,
-        birthDate DATETIME NOT NULL, gac VARCHAR(10) NOT NULL,
+        birthDate DATE NOT NULL, gac VARCHAR(10) NOT NULL,
         PRIMARY KEY (hamster_id),
         FOREIGN KEY (name) REFERENCES Names (name_id),
         FOREIGN KEY (d_type) REFERENCES DomesticType (dtype_id),
@@ -223,30 +223,60 @@ CREATE TABLE Hamsters ( hamster_id INT NOT NULL AUTO_INCREMENT,
 ### Решение:
 ```dtd
 INSERT INTO Genus (genus_id)
-VALUES ("camel"), ("horse"), ("donkey"), ("cat"), ("dog"), ("hamster");
+        VALUES ("camel"), ("horse"), ("donkey"), ("cat"), ("dog"), ("hamster");
 
 INSERT INTO Commands (cmd_id)
-VALUES ("run"), ("seat"), ("walk"), ("hunt");
+        VALUES ("run"), ("seat"), ("walk"), ("hunt");
 
 INSERT INTO GenusAndCommand (genus, command)
-  VALUES
-    ("camel", "run"),
-    ("camel", "walk"),
-    ("camel", "seat"),
-    ("horse", "run"),
-    ("horse", "walk"),
-    ("donkey", "walk"),
-    ("cat", "hunt"),
-    ("dog", "seat"),
-    ("dog", "walk"),
-    ("dog", "hunt"),
-    ("dog", "run"),
-    ("hamster", "run");
+        VALUES
+        ("camel", "run"),
+        ("camel", "walk"),
+        ("camel", "seat"),
+        ("horse", "run"),
+        ("horse", "walk"),
+        ("donkey", "walk"),
+        ("cat", "hunt"),
+        ("dog", "seat"),
+        ("dog", "walk"),
+        ("dog", "hunt"),
+        ("dog", "run"),
+        ("hamster", "run");
 
 INSERT INTO DomesticType (dtype_id)
-  VALUES
-    ("domestic animals"),
-    ("pack animals");
+        VALUES ("domestic animals"), ("pack animals");
+        
+INSERT INTO Camels ( name, d_type, birthDate, gac)
+        VALUES
+        ("Цезарь", "pack animals", "2023-10-16", "camel"),
+        ("Князь", "pack animals", "2020-1-17", "camel");
+
+INSERT INTO Horses ( name, d_type, birthDate, gac)
+        VALUES
+        ("Черный Красавчик", "pack animals", "2022-8-6", "horse"),
+        ("Росинант", "pack animals", "2020-7-18", "horse");
+
+INSERT INTO Donkeys ( name, d_type, birthDate, gac)
+        VALUES
+        ("Серый", "pack animals", "2023-7-22", "donkey"),
+        ("Иа", "pack animals", "2025-1-9", "donkey");
+
+INSERT INTO Dogs ( name, d_type, birthDate, gac)
+        VALUES
+        ("Бобик", "domestic animals", "2019-10-16", "dog"),
+        ("Шарик", "domestic animals", "2024-6-11", "dog");
+
+INSERT INTO Cats ( name, d_type, birthDate, gac)
+        VALUES
+        ("Барсик", "domestic animals", "2022-10-16", "cat"),
+        ("Пушок", "domestic animals", "2020-3-17", "cat");
+
+INSERT INTO Hamsters ( name, d_type, birthDate, gac)
+        VALUES
+        ("Хомка", "domestic animals", "2023-10-16", "hamster");
+
+
+
 ```
 
 11. Удалив из таблицы верблюдов, т.к. верблюдов решили перевезти в другой
