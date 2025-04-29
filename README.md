@@ -278,9 +278,37 @@ INSERT INTO Hamsters ( name, d_type, birthDate, gac)
 
 
 ```
+## Задание 10.
+10. Удалив из таблицы верблюдов, т.к. верблюдов решили перевезти в другой
+    питомник на зимовку. Объединить таблицы лошади, и ослы в одну таблицу.
 
-11. Удалив из таблицы верблюдов, т.к. верблюдов решили перевезти в другой
-питомник на зимовку. Объединить таблицы лошади, и ослы в одну таблицу.
+### Решение:
+Удаление значений из таблицы "Camels"
+```dtd
+DELETE FROM Camels;
+```
+Для объединения таблиц лошадей и ослов - создаём новую таблицу "DonkeyAndHorse"
+```dtd
+CREATE TABLE DonkeyAndHorse ( dah_id INT NOT NULL AUTO_INCREMENT,
+        name VARCHAR(60) NOT NULL, d_type VARCHAR(20) NOT NULL,
+        birthDate DATE NOT NULL, gac VARCHAR(10) NOT NULL,
+        PRIMARY KEY (dah_id),
+        FOREIGN KEY (name) REFERENCES Names (name_id),
+        FOREIGN KEY (d_type) REFERENCES DomesticType (dtype_id),
+        FOREIGN KEY (gac) REFERENCES Genus (genus_id));
+```
+Заполняем таблицу "DonkeyAndHorse" значениями из предыдущих таблиц
+```dtd    
+INSERT INTO DonkeyAndHorse (name, d_type, birthDate, gac)
+        SELECT name, d_type, birthDate, gac FROM Donkeys
+        UNION ALL
+        SELECT  name, d_type, birthDate, gac FROM Horses;
+```
+Удаляем таблицы лошадей и ослов
+```dtd
+DROP TABLE Horses, Donkeys;
+```
+
 
 12. Создать новую таблицу “молодые животные” в которую попадут все
 животные старше 1 года, но младше 3 лет и в отдельном столбце с точностью
