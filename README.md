@@ -314,8 +314,38 @@ DROP TABLE Horses, Donkeys;
 животные старше 1 года, но младше 3 лет и в отдельном столбце с точностью
 до месяца подсчитать возраст животных в новой таблице
 
-13. Объединить все таблицы в одну, при этом сохраняя поля, указывающие на
+## Задание 12.
+12. Объединить все таблицы в одну, при этом сохраняя поля, указывающие на
 прошлую принадлежность к старым таблицам.
+
+### Решение:
+
+```dtd
+CREATE TABLE Animals
+        SELECT name, d_type, birthDate, gac, "Camels" AS "Исходная таблица",
+        (SELECT  GROUP_CONCAT( DISTINCT command SEPARATOR ', ')  FROM GenusAndCommand
+        JOIN Camels ON Camels.gac = GenusAndCommand.genus) as "Команды" FROM Camels
+UNION ALL
+        SELECT  name, d_type, birthDate, gac, "Cats" AS "Исходная таблица",
+        (SELECT  GROUP_CONCAT( DISTINCT command SEPARATOR ', ')  FROM GenusAndCommand
+        JOIN Cats ON Cats.gac = GenusAndCommand.genus) as "Команды" FROM Cats
+UNION ALL
+        SELECT  name, d_type, birthDate, gac, "Dogs" AS "Исходная таблица",(SELECT  GROUP_CONCAT( DISTINCT command SEPARATOR ', ')  FROM GenusAndCommand
+        JOIN Dogs ON Dogs.gac = GenusAndCommand.genus) as "Команды" FROM Dogs
+UNION ALL
+        SELECT  name, d_type, birthDate, gac, "DonkeyAndHorse" AS "Исходная таблица",
+        (SELECT  GROUP_CONCAT( DISTINCT command SEPARATOR ', ')  FROM GenusAndCommand
+        JOIN DonkeyAndHorse ON DonkeyAndHorse.gac = GenusAndCommand.genus) as "Команды" FROM DonkeyAndHorse
+UNION ALL
+        SELECT  name, d_type, birthDate, gac, "Hamsters" AS "Исходная таблица",
+        (SELECT  GROUP_CONCAT( DISTINCT command SEPARATOR ', ')  FROM GenusAndCommand
+        JOIN Hamsters ON Hamsters.gac = GenusAndCommand.genus) as "Команды" FROM Hamsters;
+
+SELECT * FROM Animals;
+```
+
+![Итоговая таблица "Animals"](Scr/TableAnimals.png)
+
 
 14. Создать класс с инкапсуляцией методов и наследованием по диаграмме.
 
